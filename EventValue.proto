@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package entity;
+
+option java_multiple_files = true;
+option java_package = "tw.com.wd.proto";
+//option java_outer_classname = "EventValue";
+
+message EventValue {
+    int32 value = 1;
+    int64 eventTimestamp = 2;
+    string receiverId = 3;
+    string giverId = 4;
+    enum EventType {
+        Undefine = 0;
+        Do_Like = 1;
+        Do_Unlike = 2;
+        Do_Read = 3;
+        Do_Reply = 4;
+        Delete_Reply = 5;
+    }
+    EventType eventType = 5;
+
+    enum EventSource {
+        None = 0;
+        Post = 1;
+        Chat = 2;
+    }
+    EventSource eventSource = 6;
+}
