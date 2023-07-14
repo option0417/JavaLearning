@@ -35,7 +35,7 @@ public class AESEncryptor {
     }
 
     public static void main(String[] args) throws Exception {
-        String plaintext = "86136982";
+        String plaintext = "mitake";
         String encryptedtext = AESEncryptor.encrypt(plaintext);
 
         System.out.printf("Plaintext: %s\n", plaintext);
