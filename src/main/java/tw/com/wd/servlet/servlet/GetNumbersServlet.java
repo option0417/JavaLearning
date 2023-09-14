@@ -1,8 +1,8 @@
 package tw.com.wd.servlet.servlet;
 
 import com.google.gson.Gson;
-import tw.com.wd.dao.FakeNumberDao;
-import tw.com.wd.model.NumberModel;
+import tw.com.wd.servlet.dao.FakeNumberDao;
+import tw.com.wd.servlet.model.NumberModel;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -1,7 +1,7 @@
 package tw.com.wd.servlet.dao;
 
-import tw.com.wd.db.FakeDB;
-import tw.com.wd.model.NumberModel;
+import tw.com.wd.servlet.db.FakeDB;
+import tw.com.wd.servlet.model.NumberModel;
 
 import java.util.List;
 

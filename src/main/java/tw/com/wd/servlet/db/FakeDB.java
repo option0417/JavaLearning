@@ -1,6 +1,6 @@
 package tw.com.wd.servlet.db;
 
-import tw.com.wd.model.NumberModel;
+import tw.com.wd.servlet.model.NumberModel;
 
 import java.util.ArrayList;
 import java.util.List;

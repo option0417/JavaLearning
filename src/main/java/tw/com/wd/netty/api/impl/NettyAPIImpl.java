@@ -1,25 +1,23 @@
 package tw.com.wd.netty.api.impl;
 
 import com.google.gson.Gson;
-import tw.com.wd.api.Hello;
-import tw.com.wd.obj.HelloResponse;
+import tw.com.wd.netty.api.NettyAPI;
+import tw.com.wd.netty.obj.HelloResponse;
 
-import javax.inject.Singleton;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 
-@Singleton
-public class HelloImpl implements Hello {
+public class NettyAPIImpl implements NettyAPI {
     private byte[] responseBytes;
     private String responseContent;
     private HelloResponse helloResponse;
 
 
-    public HelloImpl() {
+    public NettyAPIImpl() {
         super();
 
         try(InputStream ins = this.getClass().getClassLoader().getResourceAsStream("Response.txt")) {
@@ -27,7 +25,7 @@ public class HelloImpl implements Hello {
 
             System.out.printf("Read %d bytes from Response.txt\n", ins.read(responseBytes));
 
-            responseContent = new String(responseBytes, Charset.forName("UTF-8"));
+            responseContent = new String(responseBytes, StandardCharsets.UTF_8);
 
             helloResponse = new HelloResponse().setContent(responseContent);
 
