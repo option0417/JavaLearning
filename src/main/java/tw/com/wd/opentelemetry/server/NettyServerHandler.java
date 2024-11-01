@@ -1,4 +1,4 @@
-package tw.com.wd.netty.server;
+package tw.com.wd.opentelemetry.server;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -8,11 +8,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.DecoderResult;
 import io.netty.handler.codec.http.*;
 import io.netty.util.AsciiString;
-import io.opentelemetry.api.OpenTelemetry;
-import io.opentelemetry.api.trace.Span;
-import io.opentelemetry.api.trace.SpanKind;
-import io.opentelemetry.api.trace.Tracer;
-import tw.com.wd.opentelemetry.ExampleConfiguration;
 
 import javax.ws.rs.core.Response;
 import java.nio.charset.Charset;
@@ -24,9 +19,6 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 
 public class NettyServerHandler extends SimpleChannelInboundHandler<HttpObject> {
-    private static final OpenTelemetry openTelemetry = ExampleConfiguration.initOpenTelemetry();
-    private static final Tracer TRACER =
-            openTelemetry.getTracer("tw.com.wd.opentelemetry.server.SampleNettyServer");
 
     private static final byte[] CONTENT = { 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' };
 
@@ -63,25 +55,14 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<HttpObject> 
             }
 
             processRequest(ctx, req);
-            System.out.println();
-            System.out.println();
-
-            traceRequest(ctx, req);
+            System.out.println("");
+            System.out.println("");
         } else if (msg instanceof HttpContent) {
             HttpContent content = (HttpContent) msg;
             processContent(ctx, content);
-            System.out.println();
-            System.out.println();
+            System.out.println("");
+            System.out.println("");
         }
-    }
-
-    private void traceRequest(ChannelHandlerContext ctx, HttpRequest req) {
-        Span span = TRACER.spanBuilder(req.uri()).setSpanKind(SpanKind.SERVER).startSpan();
-
-        span.setAttribute("HTTP.Method", req.method().toString());
-        span.setAttribute("HTTP.URI", req.uri());
-
-        span.end();
     }
 
     private Response processRequest(ChannelHandlerContext ctx, HttpRequest req) {

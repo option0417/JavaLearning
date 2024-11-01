@@ -1,4 +1,4 @@
-package tw.com.wd.netty.server;
+package tw.com.wd.opentelemetry.server;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -8,7 +8,6 @@ import io.netty.handler.codec.http.HttpServerExpectContinueHandler;
 
 
 public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
-
     public NettyServerInitializer() {
         super();
     }
