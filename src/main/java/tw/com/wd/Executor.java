@@ -1,12 +1,16 @@
 package tw.com.wd;
 
 
-import io.vertx.core.Launcher;
-import tw.com.wd.vert.SimpleVertServer;
-
-
 public class Executor {
     public static void main(String[] args) throws Exception {
-        Launcher.executeCommand("run", SimpleVertServer.class.getName());
+        String source = "abcde\nfghij\nklmno\npqrst\nuvwxyz\n";
+        System.out.printf("%s", source);
+        System.out.printf("Length: %d\n", source.length());
+
+        source = source.replaceAll("\\r\\n", " ").replaceAll("\\n", " ");
+        source = source.replace("klmno", "1");
+
+        System.out.printf("%s\n", source);
+        System.out.printf("Length: %d\n", source.length());
     }
 }
